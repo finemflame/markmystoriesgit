@@ -398,7 +398,7 @@ export async function getPaginatedPosts({ currentPage = 1, ...options } = {}) {
     return {
       posts: [],
       pagination: {
-        currentPage: undefined,
+        currentPage: null,
         pagesCount,
       },
     };
