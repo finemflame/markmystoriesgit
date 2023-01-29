@@ -409,7 +409,7 @@ export async function getPaginatedPosts({ currentPage = 1, ...options } = {}) {
   return {
     posts: sortedPosts.slice(offset, offset + postsPerPage),
     pagination: {
-      currentPage: page,
+      currentPage: page ?? null,
       pagesCount,
     },
   };
