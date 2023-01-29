@@ -71,7 +71,7 @@ const Footer = () => {
                 </p>
                 <ul className={styles.footerMenuItems}>
                   <li>
-                    <a href="/feed.xml">RSS</a>
+                    <a href={`${process.env.WORDPRESS_GRAPHQL_ENDPOINT}/feed`}>RSS</a>
                   </li>
                   <li>
                     <a href="/sitemap.xml">Sitemap</a>
