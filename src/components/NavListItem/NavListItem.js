@@ -10,7 +10,7 @@ const NavListItem = ({ className, item }) => {
   return (
     <li key={item.id}>
       {!item.path.includes('http') && !item.target && (
-        <Link href={item.path}>
+        <Link href={process.env.WORDPRESS_GRAPHQL_ENDPOINT + item.path}>
           <a title={item.title}>{item.label}</a>
         </Link>
       )}
