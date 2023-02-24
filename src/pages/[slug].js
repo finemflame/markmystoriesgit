@@ -11,11 +11,12 @@ import Header from 'components/Header';
 import Metadata from 'components/Metadata';
 
 import styles from 'styles/pages/Post.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Router from 'next/router';
 
 export default function Post({ post }) {
   const { title, metaTitle, description, date, author, categories, featuredImage, isSticky = false } = post;
+  const [showContent, setShowContent] = useState(false);
 
   const { metadata: siteMetadata = {} } = useSite();
 
@@ -54,6 +55,12 @@ export default function Post({ post }) {
     Router.push(process.env.WORDPRESS_GRAPHQL_ENDPOINT.split('/graphql')[0] + Router.asPath);
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowContent(true);
+    }, 3000);
+  }, []);
+
   return (
     <Layout>
       <Helmet {...helmetSettings} />
@@ -76,6 +83,20 @@ export default function Post({ post }) {
           isSticky={isSticky}
         />
       </Header>
+
+      {!showContent && (
+        <div
+          style={{
+            top: 0,
+            left: 0,
+            position: 'fixed',
+            zIndex: 100,
+            backgroundColor: '#fff',
+            minHeight: '100vh',
+            width: '100vw',
+          }}
+        />
+      )}
     </Layout>
   );
 }
