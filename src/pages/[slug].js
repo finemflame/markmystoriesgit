@@ -8,18 +8,14 @@ import usePageMetadata from 'hooks/use-page-metadata';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import Content from 'components/Content';
 import Metadata from 'components/Metadata';
-import FeaturedImage from 'components/FeaturedImage';
 
 import styles from 'styles/pages/Post.module.scss';
 import { useEffect } from 'react';
 import Router from 'next/router';
 
 export default function Post({ post }) {
-  const { title, metaTitle, description, content, date, author, categories, featuredImage, isSticky = false } = post;
+  const { title, metaTitle, description, date, author, categories, featuredImage, isSticky = false } = post;
 
   const { metadata: siteMetadata = {} } = useSite();
 
@@ -65,13 +61,6 @@ export default function Post({ post }) {
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
 
       <Header>
-        {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
-          />
-        )}
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{
@@ -87,19 +76,6 @@ export default function Post({ post }) {
           isSticky={isSticky}
         />
       </Header>
-
-      <Content>
-        <Section>
-          <Container>
-            <div
-              className={styles.content}
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
-          </Container>
-        </Section>
-      </Content>
     </Layout>
   );
 }
