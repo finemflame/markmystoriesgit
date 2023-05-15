@@ -1,9 +1,9 @@
 import { getPostBySlug } from 'lib/posts';
-import { helmetSettingsFromMetadata } from 'lib/site';
+// import { helmetSettingsFromMetadata } from 'lib/site';
 import usePageMetadata from 'hooks/use-page-metadata';
 
 import dynamic from 'next/dynamic';
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet';
 import { ArticleJsonLd } from 'lib/json-ld';
 
 const BlogRedirect = dynamic(() => import('components/BlogRedirect'), {
@@ -39,12 +39,12 @@ export default function Post({ post }) {
     metadata.twitter.title = metadata.title;
   }
 
-  const helmetSettings = helmetSettingsFromMetadata(metadata);
+  // const helmetSettings = helmetSettingsFromMetadata(metadata);
 
   return (
     <>
       <BlogRedirect />
-      <Helmet {...helmetSettings} />
+      {/* <Helmet {...helmetSettings} /> */}
       <ArticleJsonLd post={post} />
     </>
   );
