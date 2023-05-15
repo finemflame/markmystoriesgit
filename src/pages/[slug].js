@@ -11,12 +11,12 @@ import Header from 'components/Header';
 import Metadata from 'components/Metadata';
 
 import styles from 'styles/pages/Post.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Router from 'next/router';
 
 export default function Post({ post }) {
   const { title, metaTitle, description, date, author, categories, featuredImage, isSticky = false } = post;
-  const [showContent, setShowContent] = useState(false);
+  // const [showContent, setShowContent] = useState(false);
 
   const { metadata: siteMetadata = {} } = useSite();
 
@@ -55,11 +55,11 @@ export default function Post({ post }) {
     Router.push(process.env.WORDPRESS_GRAPHQL_ENDPOINT.split('/graphql')[0] + Router.asPath);
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowContent(true);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShowContent(true);
+  //   }, 3000);
+  // }, []);
 
   return (
     <Layout>
@@ -84,7 +84,7 @@ export default function Post({ post }) {
         />
       </Header>
 
-      {!showContent && (
+      {/* {!showContent && (
         <div
           style={{
             top: 0,
@@ -96,7 +96,7 @@ export default function Post({ post }) {
             width: '100vw',
           }}
         />
-      )}
+      )} */}
     </Layout>
   );
 }
