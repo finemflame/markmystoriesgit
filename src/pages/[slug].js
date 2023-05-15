@@ -1,6 +1,5 @@
 import { getPostBySlug } from 'lib/posts';
 import { helmetSettingsFromMetadata } from 'lib/site';
-import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
 
 import dynamic from 'next/dynamic';
@@ -11,8 +10,6 @@ const Blog = dynamic(() => import('components/Blog'), {
 
 export default function Post({ post }) {
   const { title, metaTitle, description, featuredImage } = post;
-
-  const { metadata: siteMetadata = {} } = useSite();
 
   if (!post.og) {
     post.og = {};
@@ -34,7 +31,7 @@ export default function Post({ post }) {
   });
 
   if (process.env.WORDPRESS_PLUGIN_SEO !== true) {
-    metadata.title = `${title} - ${siteMetadata.title}`;
+    metadata.title = title;
     metadata.og.title = metadata.title;
     metadata.twitter.title = metadata.title;
   }
