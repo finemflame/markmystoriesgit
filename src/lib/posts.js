@@ -3,6 +3,14 @@ import { getApolloClient } from 'lib/apollo-client';
 import { QUERY_POST_BY_SLUG, QUERY_POST_SEO_BY_SLUG } from 'data/posts';
 
 /**
+ * postPathBySlug
+ */
+
+export function postPathBySlug(slug) {
+  return `/${slug}`;
+}
+
+/**
  * getPostBySlug
  */
 
