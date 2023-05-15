@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export default function BlogRedirect() {
-  useEffect(() => {
+  setTimeout(() => {
     window.location =
       process.env.WORDPRESS_GRAPHQL_ENDPOINT.split('/graphql')[0] + window.location.pathname + window.location.search;
-  }, []);
+  }, 500);
 
   return <></>;
 }
