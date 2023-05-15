@@ -3,8 +3,10 @@ import { helmetSettingsFromMetadata } from 'lib/site';
 import usePageMetadata from 'hooks/use-page-metadata';
 
 import dynamic from 'next/dynamic';
+import { Helmet } from 'react-helmet';
+import { ArticleJsonLd } from 'lib/json-ld';
 
-const Blog = dynamic(() => import('components/Blog'), {
+const BlogRedirect = dynamic(() => import('components/BlogRedirect'), {
   ssr: false,
 });
 
@@ -16,10 +18,11 @@ export default function Post({ post }) {
   }
 
   if (featuredImage?.sourceUrl) {
+    post.og.image = featuredImage.sourceUrl;
     post.og.imageUrl = featuredImage.sourceUrl;
     post.og.imageSecureUrl = post.og.imageUrl;
     post.og.imageWidth = 2000;
-    post.og.imageHeight = 1000;
+    post.og.imageHeight = 2000;
   }
 
   const { metadata } = usePageMetadata({
@@ -38,7 +41,13 @@ export default function Post({ post }) {
 
   const helmetSettings = helmetSettingsFromMetadata(metadata);
 
-  return <Blog helmetSettings={helmetSettings} />;
+  return (
+    <>
+      <BlogRedirect />
+      <Helmet {...helmetSettings} />
+      <ArticleJsonLd post={post} />
+    </>
+  );
 }
 
 export async function getStaticProps({ params = {} } = {}) {
